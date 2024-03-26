@@ -5,6 +5,7 @@
 * Portainer - WebUI для отображения работающих контейнеров, их рестарта
 * Nginx для единой точки входа
 * Prometheus для сбора данных о CPU c Linux/Windows серверов
+* alertmanager для уведомлений в Telegram ботом в группу
 * Zabbix для опроса серверов и рестарт/переключения на горячий резерв
 * MySQL - в качестве хранилища для Zabbix
 * ElasticSearch - для хранения логов
@@ -26,3 +27,13 @@
 * start.sh скачивает docker-compose конфиги и запускает их
 * docker-compose.portainer.yaml
 * docker-compose.nginx.yaml
+* nginx.conf для URL:
+```
+server {
+    listen 80;
+    server_name elastic.$host;
+    location / {
+        proxy_pass http://localhost:9200;
+    }
+}
+```
