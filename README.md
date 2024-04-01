@@ -19,6 +19,8 @@
 * https://github.com/docker/awesome-compose/blob/master/prometheus-grafana/compose.yaml
 * https://github.com/zabbix/zabbix-docker/blob/6.4/docker-compose_v3_alpine_mysql_latest.yaml
 * https://github.com/docker/awesome-compose/blob/master/elasticsearch-logstash-kibana/compose.yaml
+* https://github.com/xwiki/xwiki-docker/blob/53b7903554d4c40cdaff92ae74263b0596316275/16/mysql-tomcat/docker-compose.yml
+## Документация
 * https://github.com/xwiki/xwiki-docker?tab=readme-ov-file#using-docker-compose
 ## Правила
 * Каждое прилоежение с своём контейнере
