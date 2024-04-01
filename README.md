@@ -9,6 +9,7 @@
 * Zabbix для опроса серверов и рестарт/переключения на горячий резерв
 * MySQL - в качестве хранилища для Zabbix
 * ElasticSearch - для хранения логов
+* XWiki - документация 
 ## Технология
 В качестве объединяющей технологии выбран docker-compose. Это позволит склеить docker-compose конфиги различных проектов, а интерфейс - получать статус по всем сервисам.
 В основе лежит скрипт, который скачивает репозитории проектов с GitHub и запускает в них docker-compose конфигурации.
@@ -18,6 +19,7 @@
 * https://github.com/docker/awesome-compose/blob/master/prometheus-grafana/compose.yaml
 * https://github.com/zabbix/zabbix-docker/blob/6.4/docker-compose_v3_alpine_mysql_latest.yaml
 * https://github.com/docker/awesome-compose/blob/master/elasticsearch-logstash-kibana/compose.yaml
+* https://github.com/xwiki/xwiki-docker?tab=readme-ov-file#using-docker-compose
 ## Правила
 * Каждое прилоежение с своём контейнере
 * Используем, при наличии, официальные docker-compose
