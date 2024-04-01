@@ -1,0 +1,1 @@
+b = ""; ["kibana", "gragana", "zabbix"].forEach((name) => { h = name + "." + window.location.host; b = b + "<p><a href=" + h + ">" + h + "</a></p>"; }); document.body.innerHTML = b;
