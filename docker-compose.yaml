@@ -13,4 +13,4 @@ services:
   web:
     image: nginx:1.25.4-alpine
     volumes:
-      - .monitoring_start_page/index.html:/usr/share/nginx/html/index.html
+      - ../monitoring_start_page/index.html:/usr/share/nginx/html/index.html
