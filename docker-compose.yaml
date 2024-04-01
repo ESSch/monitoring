@@ -5,7 +5,7 @@ services:
   nginx:
     image: nginx:1.25.4-alpine
     volumes:
-      - .nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
       - "80:80"
 
