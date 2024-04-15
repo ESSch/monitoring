@@ -1,0 +1,26 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ../../simplest-PWA-web-application:/usr/share/nginx/html/pwa-web-app
+      - ../static:/usr/share/nginx/html/static
+      - ./nginx/pwa-web-app.conf:/etc/nginx/conf.d/pwa-web-app.conf
+      - ./nginx/monitoring_start_page.conf:/etc/nginx/conf.d/monitoring_start_page.conf
+      - ./nginx/xwiki.conf:/etc/nginx/conf.d/xwiki.conf
+      - ./nginx/zabbix.conf:/etc/nginx/conf.d/zabbix.conf
+      - ./nginx/tg_bot.conf:/etc/nginx/conf.d/tg_bot.conf
+      - ./ssl:/etc/ssl/private:ro
+      - ./ssl/ssl_password.pass:/etc/keys/global.pass:ro
+      - ./logs:/var/log/nginx
+    networks:
+      - xwiki-docker-compose_xwiki-bridge
+      - nginx-proxy-manager
+networks:
+  xwiki-docker-compose_xwiki-bridge:
+    external: true
+  nginx-proxy-manager:
+    driver: bridge
