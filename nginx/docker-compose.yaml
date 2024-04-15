@@ -20,7 +20,5 @@ services:
       - xwiki-docker-compose_xwiki-bridge
       - nginx-proxy-manager
 networks:
-  xwiki-docker-compose_xwiki-bridge:
-    external: true
   nginx-proxy-manager:
     driver: bridge
