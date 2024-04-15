@@ -17,7 +17,6 @@ services:
       - ./ssl/ssl_password.pass:/etc/keys/global.pass:ro
       - ./logs:/var/log/nginx
     networks:
-      - xwiki-docker-compose_xwiki-bridge
       - nginx-proxy-manager
 networks:
   nginx-proxy-manager:
