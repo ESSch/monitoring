@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   keycloak-postgres:
-    image: library/postgres:${KC_POSTGRES_IMAGE_TAG:-14}
+    image: postgres:14
     container_name: keycloak-postgres
     restart: on-failure
     environment:
@@ -14,8 +14,6 @@ services:
       timeout: 5s
       retries: 3
       start_period: 5s
-    ports:
-      - ${KC_POSTGRES_PORT_MAPPING:-5435}:5432
     deploy:
       resources:
         limits:
@@ -30,7 +28,7 @@ services:
     command:
       - start --auto-build --db postgres --hostname-strict-https false --hostname-strict false --proxy edge --http-enabled true --import-realm --spi-user-profile-legacy-user-profile-read-only-attributes *_RES_ACCESS_MODE
     environment:
-      KC_DB_URL: keycloak-postgres
+      KC_DB_URL: jdbc:postgresql://keycloak-postgres/${POSTGRESQL_DB}
       KC_DB_USERNAME: ${POSTGRESQL_USER}
       KC_DB_PASSWORD: ${POSTGRESQL_PASS}
       KC_DB_SCHEMA: public
@@ -49,11 +47,11 @@ services:
       retries: 3
       timeout: 5s
     networks:
-      - nginx_nginx-proxy-manager
+      # - nginx_nginx-proxy-manager
       - keycloak-bridge
 
 networks:
-  nginx_nginx-proxy-manager:
-    external: true
+  # nginx_nginx-proxy-manager:
+  #   external: true
   keycloak-bridge:
     driver: bridge
