@@ -45,7 +45,7 @@ services:
       interval: 30s
       retries: 3
       timeout: 5s
-      networks:
+    networks:
       - nginx_nginx-proxy-manager
 
 networks:
