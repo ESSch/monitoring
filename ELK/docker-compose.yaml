@@ -24,10 +24,10 @@ networks:
    external: true
 
 
+
 services:
  setup:
-   image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
-   restart: unless-stopped
+   image: elasticsearch:${STACK_VERSION}
    volumes:
      - certs:/usr/share/elasticsearch/config/certs
    user: "0"
@@ -85,8 +85,7 @@ services:
    depends_on:
      setup:
        condition: service_healthy
-   image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
-   restart: unless-stopped
+   image: elasticsearch:${STACK_VERSION}
    labels:
      co.elastic.logs/module: elasticsearch
    volumes:
@@ -130,7 +129,7 @@ services:
    depends_on:
      es01:
        condition: service_healthy
-   image: docker.elastic.co/kibana/kibana:${STACK_VERSION}
+   image: kibana:${STACK_VERSION}
    labels:
      co.elastic.logs/module: kibana
    volumes:
@@ -159,18 +158,17 @@ services:
      retries: 120
    networks:
     - nginx_nginx-proxy-manager
-     
+
  logstash01:
    depends_on:
      es01:
        condition: service_healthy
      kibana:
        condition: service_healthy
-   image: docker.elastic.co/logstash/logstash:${STACK_VERSION}
+   image: logstash:${STACK_VERSION}
    labels:
      co.elastic.logs/module: logstash
    user: root
-   restart: unless-stopped
    volumes:
      - certs:/usr/share/logstash/certs
      - logstashdata01:/usr/share/logstash/data
