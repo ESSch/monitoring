@@ -93,6 +93,8 @@ services:
      - esdata01:/usr/share/elasticsearch/data
    ports:
      - ${ES_PORT}:9200
+   networks:
+    - nginx_nginx-proxy-manager
    environment:
      - node.name=es01
      - cluster.name=${CLUSTER_NAME}
@@ -156,8 +158,8 @@ services:
      interval: 10s
      timeout: 10s
      retries: 120
-  #  networks:
-  #   - nginx_nginx-proxy-manager
+   networks:
+    - nginx_nginx-proxy-manager
 
  logstash01:
    depends_on:
@@ -169,6 +171,8 @@ services:
    labels:
      co.elastic.logs/module: logstash
    user: root
+  #  networks:
+  #   - nginx_nginx-proxy-manager
    volumes:
      - certs:/usr/share/logstash/certs
      - logstashdata01:/usr/share/logstash/data
