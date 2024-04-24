@@ -47,11 +47,11 @@ services:
       retries: 3
       timeout: 5s
     networks:
-      - nginx_nginx-proxy-manager
+      # - nginx_nginx-proxy-manager
       - keycloak-bridge
 
 networks:
-  nginx_nginx-proxy-manager:
-    external: true
+  # nginx_nginx-proxy-manager:
+  #   external: true
   keycloak-bridge:
     driver: bridge
