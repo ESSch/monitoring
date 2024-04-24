@@ -20,6 +20,8 @@ networks:
  default:
    name: elastic
    external: false
+ nginx_nginx-proxy-manager:
+   external: true
 
 
 services:
@@ -153,6 +155,8 @@ services:
      interval: 10s
      timeout: 10s
      retries: 120
+   networks:
+    - nginx_nginx-proxy-manager
      
  logstash01:
    depends_on:
