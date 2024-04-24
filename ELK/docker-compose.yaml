@@ -20,8 +20,8 @@ networks:
  default:
    name: elastic
    external: false
-#  nginx_nginx-proxy-manager:
-#    external: true
+ nginx_nginx-proxy-manager:
+   external: true
 
 
 
