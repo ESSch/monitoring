@@ -17,8 +17,6 @@ volumes:
 
 networks:
   default:
-    name: elastic
-    external: false
   nginx_nginx-proxy-manager:
     external: true
 
@@ -85,6 +83,7 @@ services:
       retries: 120
 
   es01:
+    restart: unless-stopped
     depends_on:
       setup:
         condition: service_healthy
@@ -131,6 +130,7 @@ services:
       retries: 120
 
   kibana:
+    restart: unless-stopped
     depends_on:
       es01:
         condition: service_healthy
@@ -172,6 +172,7 @@ services:
       retries: 120
 
   metricbeat01:
+    restart: unless-stopped
     depends_on:
       es01:
         condition: service_healthy
@@ -202,6 +203,7 @@ services:
       -strict.perms=false
 
   filebeat01:
+    restart: unless-stopped
     depends_on:
       es01:
         condition: service_healthy
@@ -225,6 +227,7 @@ services:
       -strict.perms=false
 
   logstash01:
+    restart: unless-stopped
     depends_on:
       es01:
         condition: service_healthy
@@ -246,6 +249,7 @@ services:
       - ELASTIC_HOSTS=https://es01:9200
 
   fleet-server:
+    restart: unless-stopped
     depends_on:
       kibana:
         condition: service_healthy
