@@ -19,8 +19,8 @@ networks:
   default:
     name: elastic
     external: false
-  elk-network:
-    driver: bridge
+  nginx_nginx-proxy-manager:
+    external: true
 
 services:
   setup:
@@ -89,6 +89,8 @@ services:
       setup:
         condition: service_healthy
     image: elasticsearch:${STACK_VERSION}
+    networks:
+      - nginx_nginx-proxy-manager
     labels:
       co.elastic.logs/module: elasticsearch
     volumes:
@@ -134,7 +136,7 @@ services:
         condition: service_healthy
     image: kibana:${STACK_VERSION}
     networks:
-      - elk-network
+      - nginx_nginx-proxy-manager
     labels:
       co.elastic.logs/module: kibana
     volumes:
