@@ -206,27 +206,27 @@ services:
 #      - KIBANA_HOSTS=http://kibana:5601
 #      - LOGSTASH_HOSTS=http://logstash01:9600
 
- metricbeat01:
-   depends_on:
-     es01:
-       condition: service_healthy
-     kibana:
-       condition: service_healthy
-   image: elastic/metricbeat:${STACK_VERSION}
-   user: root
-   networks:
-    - nginx_nginx-proxy-manager
-   volumes:
-     - certs:/usr/share/metricbeat/certs
-     - metricbeatdata01:/usr/share/metricbeat/data
-     - "./metricbeat.yml:/usr/share/metricbeat/metricbeat.yml:ro"
-     - "/var/run/docker.sock:/var/run/docker.sock:ro"
-     - "/sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro"
-     - "/proc:/hostfs/proc:ro"
-     - "/:/hostfs:ro"
-   environment:
-     - ELASTIC_USER=elastic
-     - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
-     - ELASTIC_HOSTS=https://es01:9200
-     - KIBANA_HOSTS=http://kibana:5601
-     - LOGSTASH_HOSTS=http://logstash01:9600
+#  metricbeat01:
+#    depends_on:
+#      es01:
+#        condition: service_healthy
+#      kibana:
+#        condition: service_healthy
+#    image: elastic/metricbeat:${STACK_VERSION}
+#    user: root
+#    networks:
+#     - nginx_nginx-proxy-manager
+#    volumes:
+#      - certs:/usr/share/metricbeat/certs
+#      - metricbeatdata01:/usr/share/metricbeat/data
+#      - "./metricbeat.yml:/usr/share/metricbeat/metricbeat.yml:ro"
+#      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+#      - "/sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro"
+#      - "/proc:/hostfs/proc:ro"
+#      - "/:/hostfs:ro"
+#    environment:
+#      - ELASTIC_USER=elastic
+#      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+#      - ELASTIC_HOSTS=https://es01:9200
+#      - KIBANA_HOSTS=http://kibana:5601
+#      - LOGSTASH_HOSTS=http://logstash01:9600
