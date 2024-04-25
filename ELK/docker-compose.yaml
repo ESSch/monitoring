@@ -19,6 +19,8 @@ networks:
   default:
     name: elastic
     external: false
+  nginx_nginx-proxy-manager:
+    external: true
 
 services:
   setup:
@@ -131,6 +133,8 @@ services:
       es01:
         condition: service_healthy
     image: kibana:${STACK_VERSION}
+    networks:
+      - nginx_nginx-proxy-manager
     labels:
       co.elastic.logs/module: kibana
     volumes:
