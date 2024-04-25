@@ -203,6 +203,8 @@ services:
 
   filebeat01:
     restart: unless-stopped
+    networks:
+      - nginx_nginx-proxy-manager
     depends_on:
       es01:
         condition: service_healthy
