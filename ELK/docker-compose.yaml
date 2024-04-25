@@ -16,8 +16,8 @@ volumes:
     driver: local
 
 networks:
-  nginx_nginx-proxy-manager:
-    external: true
+  elk:
+    driver: bridge
 
 services:
   setup:
@@ -87,8 +87,6 @@ services:
       setup:
         condition: service_healthy
     image: elasticsearch:${STACK_VERSION}
-    networks:
-      - nginx_nginx-proxy-manager
     labels:
       co.elastic.logs/module: elasticsearch
     volumes:
@@ -135,7 +133,7 @@ services:
         condition: service_healthy
     image: kibana:${STACK_VERSION}
     networks:
-      - nginx_nginx-proxy-manager
+      - elk
     labels:
       co.elastic.logs/module: kibana
     volumes:
@@ -203,8 +201,6 @@ services:
 
   filebeat01:
     restart: unless-stopped
-    networks:
-      - nginx_nginx-proxy-manager
     depends_on:
       es01:
         condition: service_healthy
