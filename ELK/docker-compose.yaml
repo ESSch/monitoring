@@ -16,7 +16,6 @@ volumes:
     driver: local
 
 networks:
-  default:
   nginx_nginx-proxy-manager:
     external: true
 
