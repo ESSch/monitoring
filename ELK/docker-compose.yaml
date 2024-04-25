@@ -188,7 +188,7 @@ services:
    depends_on:
      es01:
        condition: service_healthy
-   image: filebeat:${STACK_VERSION}
+   image: elastic/filebeat:${STACK_VERSION}
    user: root
    volumes:
      - certs:/usr/share/filebeat/certs
@@ -210,7 +210,7 @@ services:
        condition: service_healthy
      kibana:
        condition: service_healthy
-   image: metricbeat:${STACK_VERSION}
+   image: elastic/metricbeat:${STACK_VERSION}
    user: root
    volumes:
      - certs:/usr/share/metricbeat/certs
