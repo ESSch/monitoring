@@ -133,6 +133,8 @@ services:
       es01:
         condition: service_healthy
     image: kibana:${STACK_VERSION}
+    networks:
+      - keycloak-bridge
     labels:
       co.elastic.logs/module: kibana
     volumes:
