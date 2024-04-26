@@ -19,8 +19,8 @@ networks:
   default:
    name: elastic
    external: false
-  nginx_nginx-proxy-manager:
-    external: true
+  # nginx_nginx-proxy-manager:
+  #   external: true
 
 services:
   setup:
@@ -290,6 +290,8 @@ services:
   nginx-elk:
     image: nginx:alpine
     restart: unless-stopped
+    links:
+      - kibana
     ports:
       - "8443:443"
     volumes:
@@ -300,5 +302,5 @@ services:
         condition: service_healthy
       kibana:
         condition: service_healthy
-    networks:
-      - nginx_nginx-proxy-manager
+    # networks:
+    #   - nginx_nginx-proxy-manager
