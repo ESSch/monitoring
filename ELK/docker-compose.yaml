@@ -19,8 +19,6 @@ networks:
   default:
    name: elastic
    external: false
-  nginx_nginx-proxy-manager:
-    external: true
 
 services:
   setup:
@@ -303,5 +301,3 @@ services:
         condition: service_healthy
       kibana:
         condition: service_healthy
-    networks:
-      - nginx_nginx-proxy-manager
