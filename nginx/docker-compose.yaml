@@ -28,3 +28,4 @@ volumes:
   nginx-logs:
     name: nginx-logs
     external: true
+    driver: local
