@@ -25,4 +25,4 @@ networks:
     driver: bridge
 
 volumes:
-  nginx-logs:
+  nginx-logs: {}
