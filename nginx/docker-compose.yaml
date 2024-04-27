@@ -17,7 +17,7 @@ services:
       - ./nginx/keycloak.conf:/etc/nginx/conf.d/keycloak.conf
       - ./ssl:/etc/ssl/private:ro
       - ./ssl/ssl_password.pass:/etc/keys/global.pass:ro
-      - ./logs:/var/log/nginx
+      - nginx-logs:/var/log/nginx
     networks:
       - nginx-proxy-manager
 networks:
