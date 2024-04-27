@@ -8,6 +8,8 @@ services:
       POSTGRES_USER: ${POSTGRESQL_USER}
       POSTGRES_PASSWORD: ${POSTGRESQL_PASS}
       POSTGRES_DB: ${POSTGRESQL_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: pg_isready -d postgres
       interval: 10s
@@ -55,3 +57,7 @@ networks:
     external: true
   keycloak-bridge:
     driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
