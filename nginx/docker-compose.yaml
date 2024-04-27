@@ -25,4 +25,6 @@ networks:
     driver: bridge
 
 volumes:
-  nginx-logs: {}
+  nginx:
+    name: nginx-logs
+    external: true
