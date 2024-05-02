@@ -3,5 +3,3 @@ server.shutdownTimeout: "5s"
 elasticsearch.hosts: [ "http://elasticsearch:9200" ]
 monitoring.ui.container.elasticsearch.enabled: true
 elasticsearch.ssl.verificationMode: "none"
-elasticsearch.username: "kibana"
-elasticsearch.password: "GKJjpcDTbIXwFHo61K6T"
