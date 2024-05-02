@@ -20,6 +20,11 @@ services:
       - nginx-logs:/var/log/nginx
     networks:
       - nginx-proxy-manager
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: nginx.access
 networks:
   nginx-proxy-manager:
     driver: bridge

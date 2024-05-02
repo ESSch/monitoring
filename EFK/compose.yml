@@ -1,0 +1,60 @@
+version: "3"
+
+# Define the Docker volume named esdata for the Elasticsearch container.
+volumes:
+  esdata:
+
+# Deploying three container services (fluentd, elasticsearch, and kibana)
+services:
+# Deploy using the custom image automatically be created during the build process.
+  fluentd: 
+    build: ./fluentd
+    links: # Sends incoming logs to the elasticsearch container.
+      - elasticsearch
+    volumes:
+      - ./fluentd/conf/fluent.conf:/fluentd/etc/fluent.conf
+    depends_on:
+      - elasticsearch
+    ports: # Exposes the port 24224 on both TCP and UDP protocol for log aggregation
+      - 24224:24224
+      - 24224:24224/udp
+    networks:
+      - nginx_nginx-proxy-manager
+    mem_limit: ${FD_MEM_LIMIT}
+
+# Created using the Docker image elasticsearch:7.17.0
+  elasticsearch:
+    image: elasticsearch:7.17.0
+    expose: # Exposes the default port 9200
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - discovery.type=single-node # Runs as a single-node
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=false
+      - xpack.security.transport.ssl.enabled=false
+    volumes: # Stores elasticsearch data locally on the esdata Docker volume
+      - esdata:/usr/share/elasticsearch/data
+    mem_limit: ${ES_MEM_LIMIT}
+    networks:
+      - nginx_nginx-proxy-manager
+# Created using the Docker image kibana:7.17.0
+  kibana:
+    image: kibana:7.17.0
+    links: # Links kibana service to the elasticsearch container
+      - elasticsearch
+    depends_on:
+      - elasticsearch
+    ports: # Runs kibana service on default port 5601
+      - 5601:5601
+    environment: # Defined host configuration
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    volumes:
+      - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    mem_limit: ${KB_MEM_LIMIT}
+    networks:
+      - nginx_nginx-proxy-manager
+
+networks:
+  nginx_nginx-proxy-manager:
+    external: true
