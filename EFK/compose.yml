@@ -24,7 +24,7 @@ services:
 
 # Created using the Docker image elasticsearch:7.17.0
   elasticsearch:
-    image: elasticsearch:7.17.0
+    image: elasticsearch:${STACK_VERSION}
     expose: # Exposes the default port 9200
       - 9200:9200
       - 9300:9300
@@ -40,7 +40,7 @@ services:
       - nginx_nginx-proxy-manager
 # Created using the Docker image kibana:7.17.0
   kibana:
-    image: kibana:7.17.0
+    image: kibana:${STACK_VERSION}
     links: # Links kibana service to the elasticsearch container
       - elasticsearch
     depends_on:
