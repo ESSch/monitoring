@@ -18,8 +18,8 @@ services:
     ports: # Exposes the port 24224 on both TCP and UDP protocol for log aggregation
       - 24224:24224
       - 24224:24224/udp
-    # networks:
-    #   - nginx_nginx-proxy-manager
+    networks:
+      - nginx_nginx-proxy-manager
     mem_limit: ${FD_MEM_LIMIT}
 
 # Created using the Docker image elasticsearch:7.17.0
@@ -41,8 +41,8 @@ services:
     volumes: # Stores elasticsearch data locally on the esdata Docker volume
       - esdata:/usr/share/elasticsearch/data
     mem_limit: ${ES_MEM_LIMIT}
-    # networks:
-    #   - nginx_nginx-proxy-manager
+    networks:
+      - nginx_nginx-proxy-manager
 # Created using the Docker image kibana:7.17.0
   kibana:
     image: kibana:${STACK_VERSION}
@@ -57,9 +57,9 @@ services:
     volumes:
       - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
     mem_limit: ${KB_MEM_LIMIT}
-    # networks:
-    #   - nginx_nginx-proxy-manager
+    networks:
+      - nginx_nginx-proxy-manager
 
-# networks:
-#   nginx_nginx-proxy-manager:
-#     external: true
+networks:
+  nginx_nginx-proxy-manager:
+    external: true
