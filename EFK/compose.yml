@@ -29,10 +29,13 @@ services:
       - 9200:9200
       - 9300:9300
     environment:
+      - cluster.name=${CLUSTER_NAME}
       - discovery.type=single-node # Runs as a single-node
       - xpack.security.enabled=true
       - xpack.security.http.ssl.enabled=false
       - xpack.security.transport.ssl.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - bootstrap.memory_lock=true
     volumes: # Stores elasticsearch data locally on the esdata Docker volume
       - esdata:/usr/share/elasticsearch/data
     mem_limit: ${ES_MEM_LIMIT}
