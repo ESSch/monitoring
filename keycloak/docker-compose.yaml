@@ -51,6 +51,11 @@ services:
     networks:
       - nginx_nginx-proxy-manager
       - keycloak-bridge
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: keycloak.access
 
 networks:
   nginx_nginx-proxy-manager:
