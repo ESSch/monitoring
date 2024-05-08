@@ -50,3 +50,29 @@ body {
 .main__item-link:visited {
     color: #000;
 }
+
+.broken_link {
+    color: darkgrey;
+    pointer-events: none;
+    cursor: default;
+}
+.broken_link:link {
+    color: darkgrey;
+    pointer-events: none;
+    cursor: default;
+}
+.broken_link:active {
+    color: darkgrey;
+    pointer-events: none;
+    cursor: default;
+}
+.broken_link:hover {
+    color: darkgrey;
+    pointer-events: none;
+    cursor: default;
+}
+.broken_link:visited {
+    color: darkgrey;
+    pointer-events: none;
+    cursor: default;
+}
