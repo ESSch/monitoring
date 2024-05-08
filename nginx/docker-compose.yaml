@@ -15,7 +15,7 @@ services:
       - ./nginx/zabbix.conf:/etc/nginx/conf.d/zabbix.conf
       - ./nginx/tg_bot.conf:/etc/nginx/conf.d/tg_bot.conf
       - ./nginx/keycloak.conf:/etc/nginx/conf.d/keycloak.conf
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      # - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/efk.conf:/etc/nginx/conf.d/efk.conf
       - ./ssl:/etc/ssl/private:ro
       - ./ssl/ssl_password.pass:/etc/keys/global.pass:ro
