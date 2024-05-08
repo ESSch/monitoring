@@ -55,6 +55,7 @@ services:
     # - Provide a name instead of an auto-generated id for the mysql data, to make it simpler to identify in
     # 'docker volume ls'
     # - Provide a SQL script to be executed when the db image starts (to set permissions to create subwikis)
+    restart: on-failure
     volumes:
       - mysql-data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
