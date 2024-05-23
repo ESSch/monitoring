@@ -10,12 +10,12 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data  # каталог для хранения данных Portainer
-    # networks:
-    #   - nginx_nginx-proxy-manager
+    networks:
+      - nginx_nginx-proxy-manager
 
 volumes:
   portainer_data:
 
-# networks:
-#   nginx_nginx-proxy-manager:
-#     external: true
+networks:
+  nginx_nginx-proxy-manager:
+    external: true
