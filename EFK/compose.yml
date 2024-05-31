@@ -9,6 +9,7 @@ services:
 # Deploy using the custom image automatically be created during the build process.
   fluentd: 
     build: ./fluentd
+    restart: always
     links: # Sends incoming logs to the elasticsearch container.
       - elasticsearch
     volumes:
@@ -25,6 +26,7 @@ services:
 # Created using the Docker image elasticsearch:7.17.0
   elasticsearch:
     image: elasticsearch:${STACK_VERSION}
+    restart: always
     expose: # Exposes the default port 9200
       - 9200:9200
     ports:
@@ -46,6 +48,7 @@ services:
 # Created using the Docker image kibana:7.17.0
   kibana:
     image: kibana:${STACK_VERSION}
+    restart: always
     links: # Links kibana service to the elasticsearch container
       - elasticsearch
     depends_on:

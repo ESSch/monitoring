@@ -2,7 +2,7 @@ version: '3'
 services:
   nginx:
     image: nginx:alpine
-    restart: unless-stopped
+    restart: always
     ports:
       - "80:80"
       - "443:443"
