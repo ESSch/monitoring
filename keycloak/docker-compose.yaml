@@ -37,8 +37,6 @@ services:
       KC_FEATURES: preview
       KEYCLOAK_ADMIN: ${KC_ADMIN}
       KEYCLOAK_ADMIN_PASSWORD: ${KC_PASS}
-    expose:
-      - 8090:8080
     depends_on:
       keycloak-postgres:
         condition: service_healthy
