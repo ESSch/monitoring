@@ -30,7 +30,7 @@ services:
     container_name: xwiki-mysql-tomcat-web
     depends_on:
       - db
-    ports:
+    expose:
       - "8080:8080"
     # Default values defined in .env file.
     # The DB_USER/DB_PASSWORD/DB_DATABASE/DB_HOST variables are used in the hibernate.cfg.xml file.

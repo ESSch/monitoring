@@ -5,7 +5,7 @@ services:
     image: portainer/portainer-ce:sts 
     container_name: portainer
     restart: always
-    ports:
+    expose:
       - "9000:9000"  # порт для доступа к веб-интерфейсу Portainer
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
