@@ -16,7 +16,7 @@ services:
       - ./fluentd/conf/fluent.conf:/fluentd/etc/fluent.conf
     depends_on:
       - elasticsearch
-    expose: # Exposes the port 24224 on both TCP and UDP protocol for log aggregation
+    ports: # Exposes the port 24224 on both TCP and UDP protocol for log aggregation
       - 24224:24224
       - 24224:24224/udp
     networks:
@@ -28,6 +28,8 @@ services:
     image: elasticsearch:${STACK_VERSION}
     restart: always
     expose: # Exposes the default port 9200
+      - 9200:9200
+    ports:
       - 9200:9200
     environment:
       - discovery.type=single-node # Runs as a single-node
@@ -51,7 +53,7 @@ services:
       - elasticsearch
     depends_on:
       - elasticsearch
-    expose: # Runs kibana service on default port 5601
+    ports: # Runs kibana service on default port 5601
       - 5601:5601
     environment: # Defined host configuration
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
