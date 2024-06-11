@@ -21,12 +21,9 @@ services:
     image: joxit/docker-registry-ui:static
     restart: always
     container_name: registry-ui
-    ports:
-      - "5001:5001"
     environment:
       - REGISTRY_TITLE=Private Docker Registry
       - NGINX_PROXY_PASS_URL=http://registry:5000
-      - NGINX_LISTEN_PORT=5001
       - SINGLE_REGISTRY=true
     depends_on:
       - registry
