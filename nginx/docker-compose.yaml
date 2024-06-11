@@ -30,6 +30,8 @@ services:
       - SINGLE_REGISTRY=true
     depends_on:
       - registry
+    networks:
+      - nginx-proxy-manager
 
   nginx:
     image: nginx:alpine
