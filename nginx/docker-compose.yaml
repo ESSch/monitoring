@@ -22,13 +22,12 @@ services:
     restart: always
     container_name: registry-ui
     ports:
-      - "8081:80"
+      - "5001:5001"
     environment:
-      - REGISTRY_TITLE=MyRegistry
-      - REGISTRY_URL=http://registry:5000
-      - REGISTRY_UI_AUTH_ENABLED=true
-      - REGISTRY_UI_AUTH_REALM="Registry UI"
-      - REGISTRY_UI_AUTH_PATH=/auth-ui/htpasswd
+      - REGISTRY_TITLE=Private Docker Registry
+      - NGINX_PROXY_PASS_URL=http://registry:5000
+      - NGINX_LISTEN_PORT=5001
+      - SINGLE_REGISTRY=true
     depends_on:
       - registry
 
